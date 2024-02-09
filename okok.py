@@ -1,8 +1,8 @@
 from telethon import TelegramClient , events , Button, sessions
 import os,json,subprocess
 # ======================= DB ============================ #
-if os.path.exists('/home/yazdancr/.trash/"Anonymous message"/db.json'):
-    with open('db.json','w') as x:
+if not os.path.exists('/home/yazdancr/.trash/"Anonymous message"/db.json'):
+    with open('/home/yazdancr/.trash/"Anonymous message"/db.json','w') as x:
         json.dump({'s':'home'},x)
 # ======================================================= #
 admin = 5263923993
