@@ -5,9 +5,9 @@ if not 'db.json' in os.listdir():
     with open('db.json','w') as x:
         json.dump({'s':'home'},x)
 # ======================================================= #
-admin = 00000
-Token = 'TOKEN'
-api_id , api_hash = 11111,'API_HASH'
+admin = 5263923993
+Token = '6481231831:AAEAql1PXZvoHS-9baEy1-EBicvb-78mqiA'
+api_id , api_hash = 10179366,'b9f37fae5553298773daf1410d2cb8d0'
 orgDIR = os.getcwd()
 # ======================================================= #
 unknown = TelegramClient('control',api_id,api_hash).start(bot_token=Token)
