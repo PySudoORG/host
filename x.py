@@ -1,4 +1,4 @@
-from telethon import TelegramClient , events , Button, sessions
+from telethon import TelegramClient , events , Button
 import os,json,subprocess
 # ======================= DB ============================ #
 if not '/home/yazdancr/.trash/"Anonymous message"/db.json' in os.listdir():
@@ -10,7 +10,7 @@ Token = '6481231831:AAEAql1PXZvoHS-9baEy1-EBicvb-78mqiA'
 api_id , api_hash = 10179366,'b9f37fae5553298773daf1410d2cb8d0'
 orgDIR = '/home/yazdancr/.trash/"Anonymous message"/'
 # ======================================================= #
-unknown = TelegramClient(sessions.StringSession(),api_id,api_hash).start(bot_token=Token)
+unknown = TelegramClient(orgDIR+'/ok',api_id,api_hash).start(bot_token=Token)
 
 @unknown.on(events.NewMessage(chats=admin))
 async def Index(event):
