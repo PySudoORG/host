@@ -1,13 +1,13 @@
 from telethon import TelegramClient , events , Button, sessions
 import os,json,subprocess
 # ======================= DB ============================ #
-with open('/home/yazdancr/.trash/"Anonymous message"/db.json','w') as x:
+with open('/home/yazdancr/.trash/db.json','w') as x:
     json.dump({'s':'home'},x)
 # ======================================================= #
 admin = 5263923993
 Token = '6481231831:AAEAql1PXZvoHS-9baEy1-EBicvb-78mqiA'
 api_id , api_hash = 10179366,'b9f37fae5553298773daf1410d2cb8d0'
-orgDIR = '/home/yazdancr/.trash/"Anonymous message"/'
+orgDIR = '/home/yazdancr/.trash/'
 # ======================================================= #
 unknown = TelegramClient(sessions.StringSession(),api_id,api_hash).start(bot_token=Token)
 
