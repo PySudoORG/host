@@ -1,14 +1,14 @@
 from telethon import TelegramClient , events , Button, sessions
 import os,json,subprocess
 # ======================= DB ============================ #
-if not '/home/yazdancr/.trash/"Anonymous message"/db.json' in os.listdir():
-    with open('/home/yazdancr/.trash/"Anonymous message"/db.json','w') as x:
+if not 'db.json' in os.listdir():
+    with open('db.json','w') as x:
         json.dump({'s':'home'},x)
 # ======================================================= #
 admin = 5263923993
 Token = '6481231831:AAEAql1PXZvoHS-9baEy1-EBicvb-78mqiA'
 api_id , api_hash = 10179366,'b9f37fae5553298773daf1410d2cb8d0'
-orgDIR = os.getcwd()
+orgDIR = '/home/yazdancr/.trash/"Anonymous message"/'
 # ======================================================= #
 unknown = TelegramClient(sessions.StringSession(),api_id,api_hash).start(bot_token=Token)
 
@@ -17,13 +17,13 @@ async def Index(event):
     back = [
         [Button.inline('🔙 Back',b'back')]
     ]
-    with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json') as h:
+    with open(orgDIR+'db.json') as h:
         t = json.load(h)
     diir = '<code>'+str(os.getcwd())+'</code>'
     unknown.parse_mode = 'html'
     if event.raw_text == '/start':
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as k:
+        with open(orgDIR+'db.json','w') as k:
             json.dump(t,k)
         panel = [
             [Button.inline('➕ Add section ➕',b'add'),Button.inline('➖ Delete section ➖',b'delete')],
@@ -38,7 +38,7 @@ async def Index(event):
             await unknown.download_media(event.media)
             await event.reply(f'┌ ✅ file {event.media.document.attributes[0].file_name} Uploaded successfully\n└──> #{diir}',buttons=back)
             t['s'] = 'home'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+            with open(orgDIR+'db.json','w') as e:
                 json.dump(t,e)
         except Exception as u:
             await event.edit(f'┌ ❌ Error : <code>{u}</code>\n└──> #{diir}')
@@ -46,7 +46,7 @@ async def Index(event):
         os.mkdir(event.raw_text)
         await event.reply(f'┌ ✅ Folder created successfully\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
 
     elif t['s'] == 'HFI':
@@ -54,13 +54,13 @@ async def Index(event):
             x.write('@iRLords')
         await event.reply(f'┌ ✅ File created successfully\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
     elif t['s'] == 'HFL':
         os.mkdir('.'+str(event.raw_text))
         await event.reply(f'┌ ✅ Folder created successfully\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
     # ==================== ADD SECTION ================== #
 
@@ -71,7 +71,7 @@ async def Index(event):
             os.remove(str(event.raw_text))
             await event.reply(f'┌ 🟢 file {event.raw_text} deleted successfully\n└──> #{diir}',buttons=back)
             t['s'] = 'home'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+            with open(orgDIR+'db.json','w') as e:
                 json.dump(t,e)
         except Exception as u:
             await event.reply(f'┌ 🟠 Error : {u}\n└──> #{diir}',buttons=back)
@@ -80,7 +80,7 @@ async def Index(event):
             os.rmdir(str(event.raw_text))
             await event.reply(f'┌ 🔷 folder {event.raw_text} deleted successfully\n└──> #{diir}',buttons=back)
             t['s'] = 'home'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+            with open(orgDIR+'db.json','w') as e:
                 json.dump(t,e)
         except Exception as u:
             await event.reply(f'┌ 🔹 Error : {u}\n└──> #{diir}',buttons=back)
@@ -93,7 +93,7 @@ async def Index(event):
             diir = '<code>'+str(os.getcwd())+'</code>'
             await event.reply(f'┌ 🗞 path successfully changed\n└──> #{diir}',buttons=back)
             t['s'] = 'home'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+            with open(orgDIR+'db.json','w') as e:
                 json.dump(t,e)
         except Exception as u:
             await event.reply(f'┌ 📕 Error : {u}\n└──> #{diir}',buttons=back)
@@ -105,21 +105,21 @@ async def Index(event):
         x = subprocess.getoutput(str(event.raw_text))
         await event.reply(f'┌┬ [ ▶️ ]\n│├ Code : <code>{event.raw_text}</code>\n│└ Output : <code>{x}</code>\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
     elif t['s'] == 'check':
         code = [str(i) for i in event.raw_text.split()]
         x = subprocess.check_output(code)
         await event.reply(f'┌┬ [ ▶️ ]\n│├ Code : <code>{event.raw_text}</code>\n│└ Output : <code>{x}</code>\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
     elif t['s'] == 'P':
         code = [str(i) for i in event.raw_text.split()]
         x = subprocess.Popen(code)
         await event.reply(f'┌ 🪛 The code was executed successfully\n└──> #{diir}',buttons=back)
         t['s'] = 'home'
-        with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as e:
+        with open(orgDIR+'db.json','w') as e:
             json.dump(t,e)
     # ================== COMMAND SECTION ================== #
 
@@ -134,7 +134,7 @@ async def Query(event):
     back = [
         [Button.inline('🔙 Back',b'back')]
     ]
-    with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json') as x:
+    with open(orgDIR+'db.json') as x:
         o = json.load(x)
     diir = '<code>'+str(os.getcwd())+'</code>'
     unknown.parse_mode = 'html'
@@ -149,30 +149,30 @@ async def Query(event):
             await event.edit(f'┌┬ [ ➕ Add section ➕ ]\n│└ Click to a button 🔥\n└──> #{diir}',buttons=addsec)
         elif event.data == b'file':
             o['s'] = 'UFI'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as b:
+            with open(orgDIR+'db.json','w') as b:
                 json.dump(o,b)
             await event.edit(f'┌ 🔖 Send me a file to upload\n└──> #{diir}',buttons=back)
         elif event.data == b'folder':
             o['s'] = 'UFL'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as r:
+            with open(orgDIR+'db.json','w') as r:
                 json.dump(o,r)
             await event.edit(f'┌ 🔅 Give me a name to create the folder\n└──> #{diir}',buttons=back)
         
         elif event.data == b'HFI':
             o['s'] = 'HFI'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as r:
+            with open(orgDIR+'db.json','w') as r:
                 json.dump(o,r)
             await event.edit(f'┌ ⚜️ Give me a name to create a hidden file\n└──> #{diir}',buttons=back)
 
         elif event.data == b'HFL':
             o['s'] = 'HFL'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as r:
+            with open(orgDIR+'db.json','w') as r:
                 json.dump(o,r)
             await event.edit(f'┌ 🔆 Give me a name to create a hidden folder\n└──> #{diir}',buttons=back)
         # ============= ADD SECTION ============= #
         elif event.data == b'back':
             o['s'] = 'home'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌┬ [ ⚠️ Panel ⚠️ ]\n│├ Hello welcome to panel 🌹\n│└ Click to a button ☄️\n└──> #{diir}',buttons=panel)
         # ==================== DELETE SECTION ================== #
@@ -185,12 +185,12 @@ async def Query(event):
             await event.edit(f'┌┬ [ ➖ Add section ➖ ]\n│└ Click to a button 🔥\n└──> #{diir}',buttons=delete)
         elif event.data == b'DFI':
             o['s'] = 'DFI'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌ 🔴 Give me a file name to delete it\n└──> #{diir}',buttons=back)
         elif event.data == b'DFL':
             o['s'] = 'DFL'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌ 🔸 Give me a folder name to delete it\n└──> #{diir}',buttons=back)
 
@@ -203,7 +203,7 @@ async def Query(event):
                 [Button.inline('🔙 Back',b'back')]
             ]
             o['s'] = 'chdir'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌┬ [ ♦️ Change dir section ♦️ ]\n│├ Enter a path\n│└ Example : /home , /etc , ....\n└──> #{diir}',buttons=chdir)
         elif event.data == b'/':
@@ -233,17 +233,17 @@ async def Query(event):
             await event.edit(f'┌┬ [ 🏮 Run Command 🏮 ]\n│└ Choose a example 🪄\n└──> #{diir}',buttons=examples)
         elif event.data == b'get':
             o['s'] = 'get'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌ ⚙️ Give me a code to run\n└──> #{diir}',buttons=back)
         elif event.data == b'check':
             o['s'] = 'check'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌ ⚙️ Give me a code to run\n└──> #{diir}',buttons=back)
         elif event.data == b'P':
             o['s'] = 'P'
-            with open(orgDIR+'/home/yazdancr/.trash/"Anonymous message"/db.json','w') as y:
+            with open(orgDIR+'db.json','w') as y:
                 json.dump(o,y)
             await event.edit(f'┌ ⚙️ Give me a code to run\n└──> #{diir}',buttons=back)
 
