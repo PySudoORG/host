@@ -1,7 +1,7 @@
 from telethon import TelegramClient , events , Button, sessions
 import os,json,subprocess
 # ======================= DB ============================ #
-if not 'db.json' in os.listdir():
+if not '/home/yazdancr/.trash/"Anonymous message"/db.json' in os.listdir():
     with open('db.json','w') as x:
         json.dump({'s':'home'},x)
 # ======================================================= #
